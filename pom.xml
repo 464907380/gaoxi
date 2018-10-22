@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>gaoxi</name>
+	<name>com.gaoxi</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -25,7 +25,7 @@
 	</properties>
 
 	<dependencies>
-
+		<!-- Spring Boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -59,16 +59,10 @@
 		</dependency>
 
 		<!-- gaoxi-common-service-facade -->
-		<!--<dependency>
+		<dependency>
 			<groupId>com.gaoxi</groupId>
 			<artifactId>gaoxi-common-service-facade</artifactId>
 			<version>0.0.1</version>
-		</dependency>-->
-
-		<dependency>
-			<groupId>com.gaoxi-common-service-facade</groupId>
-			<artifactId>gaoxi-common-service-facade</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<!-- AOP -->
@@ -105,7 +99,35 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.6.5</version>
+				<configuration>
+					<container>
+						<!-- 指明使用的tomcat服务器版本 -->
+						<containerId>tomcat8x</containerId>
+						<type>remote</type>
+					</container>
+					<configuration>
+						<type>runtime</type>
+						<cargo.remote.username>admin</cargo.remote.username>
+						<cargo.remote.password>jishimen2019</cargo.remote.password>
+					</configuration>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>deploy</phase>
+						<goals>
+							<goal>redeploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
+
+
 	</build>
 
 	<modules>
@@ -117,6 +139,8 @@
 		<module>gaoxi-redis</module>
 		<module>gaoxi-user</module>
 	</modules>
+
+
 
 
 </project>
